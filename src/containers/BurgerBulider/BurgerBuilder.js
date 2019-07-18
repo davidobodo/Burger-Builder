@@ -24,14 +24,17 @@ class BurgerBuilder extends Component{
         },
         //initial price of the burger. i.e for just bread-top and bread-bottom 
         totalPrice : 4,
+        //sole aim of purchaseable is to enable the ORDER NOW button
         purchasable: false,
         purchasing: false
     }
 
+
+    //Responsible for altering purchaseable
     updatePurchaseState =(ingredients)=>{
-        
-        const sum = Object.keys(ingredients)
-            .map(igKey => {
+        const sum = Object.keys(ingredients)//converts object into an array of its keys(i.e name of each ingredient) and gives each an index 
+            .map(igKey => {//igkey is the name of each ingredient
+                
                 return ingredients[igKey]
             })
             .reduce((sum, el) => {
@@ -45,11 +48,12 @@ class BurgerBuilder extends Component{
         //this.state.ingredients[type] gives the property value of the property type passed in
         const oldCount= this.state.ingredients[type];
         const updatedCount = oldCount + 1;
-        //assgin state before updating to a new constant 
+        //assgin state before updating to a new constant...just so that i dont alter the previous state(make a copy)
         const updatedIngredients = {
             ...this.state.ingredients
-        };
+        }
         //assign the new count to the particular ingredient in our new const 
+        //alter the new copy
         updatedIngredients[type] = updatedCount;
         //store the price of the ingredient type i want to add into a new constant
         const priceAddition = INGREDIENT_PRICES[type];
@@ -81,10 +85,11 @@ class BurgerBuilder extends Component{
         this.updatePurchaseState(updatedIngredients);
     }
 
+    //once this is triggered some css property for modal and backdrop would be changed
     purchaseHandler = () => {
         this.setState({purchasing: true});
     }
-
+    //exact opposite of the above function
     purchaseCancelHandler =() => {
         this.setState({purchasing:false})
     }

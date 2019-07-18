@@ -5,7 +5,7 @@ import BurgerBuilder from './containers/BurgerBulider/BurgerBuilder'
 class App extends Component {
   render(){
       return (
-        //I dont yet understand why Latout has to enclose BurgerBuilder
+        //I dont yet understand why Layout has to enclose BurgerBuilder
         <div>
           <Layout>
             <BurgerBuilder/>

@@ -29,7 +29,7 @@ class BurgerBuilder extends Component{
         error:false
     }
     componentDidMount(){
-        axios.get('https://burgerbuilder-97dc6.firebaseio.com/ingredients.json')
+        axios.get('/ingredients.json')
             .then( response =>{
                 this.setState({ingredients:response.data})
             })
@@ -104,7 +104,8 @@ class BurgerBuilder extends Component{
     }
 
     purchaseContinueHandler =() => {
-        this.setState({loading:true})
+        this.setState({loading:true})//so that i would see spinner
+        
         const order ={
             ingredients:this.state.ingredients,
             price:this.state.totalPrice,
@@ -119,7 +120,7 @@ class BurgerBuilder extends Component{
                 },
             deliveryMethod : 'fastest'
         }
-        axios.post('/orders', order )
+        axios.post('/orders.json', order )
             .then(response => 
                 this.setState({loading:false, purchasing:false}))
             .catch(error =>
@@ -143,8 +144,6 @@ class BurgerBuilder extends Component{
         }
 
         let orderSummary = null;
-        
-        
 
         let burger = this.state.error ? <h1>Ingredients cant be loaded </h1> :<Spinner/>
         if(this.state.ingredients){

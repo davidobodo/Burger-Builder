@@ -3,12 +3,8 @@ import Auxi from '../../../hoc/Auxi'
 import Button from '../../UI/Button/Button'
 
 class OrderSummary extends Component {
-    componentDidMount(){
-        console.log('orderSummary did mount')
-    }
-    componentWillUpdate (){
-        console.log("orderSummarys will update")
-    }
+    
+  
     render(){
         const ingredientSummary = Object.keys(this.props.ingredients)
         .map(igkey => {

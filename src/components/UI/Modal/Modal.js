@@ -9,9 +9,7 @@ class Modal extends Component{
         return nextProps.show !== this.props.show;
     }
 
-    componentWillUpdate(){
-        console.log("modal will update")
-    }
+    
 
     render(){
         

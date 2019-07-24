@@ -130,11 +130,24 @@ class BurgerBuilder extends Component{
         //         this.setState({loading:false, purchasing:false}))
         //     .catch(error =>
         //         this.setState({loading:false, purchasing:false}));
-            this.props.history.push('/Checkout')
+        const queryParams =[];
+        for(let i in this.state.ingredients){
+            queryParams.push(encodeURIComponent(i)+ '=' + encodeURIComponent(this.state.ingredients[i]));
+            
+        console.log(queryParams)
+        }
+
+        const queryString = queryParams.join('&')
+        
+        this.props.history.push({
+                pathname: '/checkout',
+                search: '?' + queryString
+            })
     } 
 
 
     render(){
+
         //pass all the states into a new constant cause we want to improve the user interface
         //This improvement is such that the button will be disabled when clicking it might become an error(even though we have solved this error)
         const disabledInfo ={

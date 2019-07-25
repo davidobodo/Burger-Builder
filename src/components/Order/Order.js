@@ -10,4 +10,4 @@ const order = (props) => {
     )
 }
 
-export default oredr
+export default order

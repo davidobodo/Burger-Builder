@@ -28,8 +28,13 @@ class Orders extends Component{
     render(){
         return(
             <div>
-                <Order/>
-                <Order/>
+                {this.state.orders.map(order => (
+                    
+                    <Order 
+                        key={order.id}
+                        ingredients={order.ingredients}
+                        price={order.price}/>//adding + here is another option for turning the string price into a number(although i already used number.parsefloat in  the order component to do that)
+                ))}
             </div>
 
         )   

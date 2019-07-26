@@ -18,7 +18,6 @@ class ContactData extends Component{
 
     orderHander =(e)=> {
         e.preventDefault();
-        console.log(this.props.ingredients)
 
          this.setState({loading:true})//so that i would see spinner
         
@@ -38,6 +37,7 @@ class ContactData extends Component{
         }
         axios.post('/orders.json', order )
             .then(response => {
+                //removes spinner and redirects page to '/' which is BurgerBuilder
                 this.setState({loading:false})
                 this.props.history.push('/');}
             )

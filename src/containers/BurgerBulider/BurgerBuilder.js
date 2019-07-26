@@ -19,12 +19,7 @@ const INGREDIENT_PRICES = {
 class BurgerBuilder extends Component{
     //the amount of each ingredient present in the burger
     state={
-        ingredients:{
-            salad:0,
-        meat:0,
-        cheese:0,
-        bacon:0
-        },
+        ingredients: null,
         //initial price of the burger. i.e for just bread-top and bread-bottom 
         totalPrice : 4,
         //sole aim of purchaseable is to enable the ORDER NOW button
@@ -34,13 +29,13 @@ class BurgerBuilder extends Component{
         error:false
     }
     componentDidMount(){
-        // axios.get('/ingredients.json')
-        //     .then( response =>{
-        //         this.setState({ingredients:response.data})
-        //     })
-        //     .catch(error => {
-        //         this.setState({error:true})
-        //     })
+        axios.get('/ingredients.json')
+            .then( response =>{
+                this.setState({ingredients:response.data})
+            })
+            .catch(error => {
+                this.setState({error:true})
+            })
     }
 
 
@@ -109,8 +104,16 @@ class BurgerBuilder extends Component{
     }
 
     purchaseContinueHandler =() => {
-       
+        //initialize an array
         const queryParams =[];
+
+        //loop through all the properties of the ingredient object
+        //add each property to the empty array declared and initialized above
+        //also add the price to the array
+        //convert the elements of the queryParams array to string using join. But join them with an ampersand sign. store in a new constant(queryString)
+        //all this is because we want to push these properties from this page to another
+        //use the history.push that Route gives to this component to move to the checkout page
+        //add them to the url using ?
         for(let i in this.state.ingredients){
             queryParams.push(encodeURIComponent(i)+ '=' + encodeURIComponent(this.state.ingredients[i]));
         }

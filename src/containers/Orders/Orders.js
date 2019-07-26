@@ -4,6 +4,7 @@ import axios from '../../axios(orders)'
 import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler'
 
 class Orders extends Component{
+    //Note that anything that is dynamic in a page has to be in a state, so that it can  change...hence the initialization of this state
     state={
         orders: [],
         loading:true
@@ -12,11 +13,13 @@ class Orders extends Component{
         axios.get('/orders.json')
             .then(res =>{
                 const fetchedOrders =[];
+                //key is the id
                 for(let key in res.data){
                     fetchedOrders.push({
                         ...res.data[key],
                         id:key
                     });
+                    console.log(res.data)
                 }
                 this.setState({loading:false, orders:fetchedOrders});
             })

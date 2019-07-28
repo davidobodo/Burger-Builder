@@ -19,7 +19,12 @@ const INGREDIENT_PRICES = {
 class BurgerBuilder extends Component{
     //the amount of each ingredient present in the burger
     state={
-        ingredients: null,
+        ingredients: {
+            salad:1,
+            bacon:1,
+            cheese:1,
+            meat:1
+        },
         //initial price of the burger. i.e for just bread-top and bread-bottom 
         totalPrice : 4,
         //sole aim of purchaseable is to enable the ORDER NOW button
@@ -29,13 +34,13 @@ class BurgerBuilder extends Component{
         error:false
     }
     componentDidMount(){
-        axios.get('/ingredients.json')
-            .then( response =>{
-                this.setState({ingredients:response.data})
-            })
-            .catch(error => {
-                this.setState({error:true})
-            })
+        // axios.get('/ingredients.json')
+        //     .then( response =>{
+        //         this.setState({ingredients:response.data})
+        //     })
+        //     .catch(error => {
+        //         this.setState({error:true})
+        //     })
     }
 
 

@@ -28,7 +28,7 @@ class ContactData extends Component{
             zipCode: {
                 elementType: 'input',
                 elementConfig:{
-                    type:'number',
+                    type:'text',
                     placeholder: 'Zipcode'
                 },
                 value:''
@@ -83,6 +83,20 @@ class ContactData extends Component{
                 this.setState({loading:false}));
     }
 
+    inputChangeHandler =(e, inputIdentifier) => {
+        const updatedOrderForm ={
+            ...this.state.orderForm
+        }
+
+        const updatedFormElement = {
+            ...updatedOrderForm[inputIdentifier]
+        }
+
+        updatedFormElement.value = e.target.value;
+        updatedOrderForm[inputIdentifier] = updatedFormElement;
+        this.setState({orderForm: updatedOrderForm});
+    }
+
 
     render(){
 
@@ -101,7 +115,8 @@ class ContactData extends Component{
                         key={formElement.id}
                         elementType={formElement.config.elementType} 
                         elementConfig={formElement.config.elementConfig} 
-                        value={formElement.config.value}/>
+                        value={formElement.config.value}
+                        changed={(e) => this.inputChangeHandler(e, formElement.id)}/>
                     ))}
                     <Button btnType="Success" clicked={this.orderHander}>ORDER</Button>
                 </form>

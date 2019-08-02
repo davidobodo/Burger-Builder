@@ -99,7 +99,7 @@ class BurgerBuilder extends Component{
 
     purchaseContinueHandler =() => {
         //initialize an array
-        const queryParams =[];
+        // const queryParams =[];
 
         //loop through all the properties of the ingredient object
         //add each property to the empty array declared and initialized above
@@ -108,15 +108,15 @@ class BurgerBuilder extends Component{
         //all this is because we want to push these properties from this page to another
         //use the history.push that Route gives to this component to move to the checkout page
         //add them to the url using ?
-        for(let i in this.state.ingredients){
-            queryParams.push(encodeURIComponent(i)+ '=' + encodeURIComponent(this.state.ingredients[i]));
-        }
-        queryParams.push('price='+ this.state.totalPrice)
-        const queryString = queryParams.join('&')
+        // for(let i in this.state.ingredients){
+        //     queryParams.push(encodeURIComponent(i)+ '=' + encodeURIComponent(this.state.ingredients[i]));
+        // }
+        // queryParams.push('price='+ this.state.totalPrice)
+        // const queryString = queryParams.join('&')
         
         this.props.history.push({
-                pathname: '/checkout',
-                search: '?' + queryString
+                pathname: '/checkout'
+                // search: '?' + queryString
             })
     } 
 

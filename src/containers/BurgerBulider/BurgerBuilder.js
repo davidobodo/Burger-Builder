@@ -12,18 +12,11 @@ import * as actionTypes from '../../store/actions'
 
 
 //Prices for each ingredient
-const INGREDIENT_PRICES = {
-    salad: 0.5,
-    cheese: 0.8,
-    bacon: 0.7,
-    meat: 1.2
-}
+
 
 class BurgerBuilder extends Component{
     //the amount of each ingredient present in the burger
     state={
-        //initial price of the burger. i.e for just bread-top and bread-bottom 
-        totalPrice : 4,
         //sole aim of purchaseable is to enable the ORDER NOW button
         purchasable: false,
         purchasing: false,
@@ -55,46 +48,46 @@ class BurgerBuilder extends Component{
     }
 
     //function that gets called when i want to add an ingredient
-    addIngredientHandler = (type) => {
-        //this.state.ingredients[type] gives the property value of the property type passed in
-        const oldCount= this.state.ingredients[type];
-        const updatedCount = oldCount + 1;
-        //assgin state before updating to a new constant...just so that i dont alter the previous state(make a copy)
-        const updatedIngredients = {
-            ...this.state.ingredients
-        }
-        //assign the new count to the particular ingredient in our new const 
-        //alter the new copy
-        updatedIngredients[type] = updatedCount;
-        //store the price of the ingredient type i want to add into a new constant
-        const priceAddition = INGREDIENT_PRICES[type];
-        const oldPrice = this.state.totalPrice;
-        //add state initial price to price of ingredient i want to add
-        const newPrice = oldPrice + priceAddition;
-        //use SETSTATE to do the trick of updating the state respectively
-        this.setState({totalPrice:newPrice, ingredients:updatedIngredients});
-        this.updatePurchaseState(updatedIngredients);
-    }
+    // addIngredientHandler = (type) => {
+    //     //this.state.ingredients[type] gives the property value of the property type passed in
+    //     const oldCount= this.state.ingredients[type];
+    //     const updatedCount = oldCount + 1;
+    //     //assgin state before updating to a new constant...just so that i dont alter the previous state(make a copy)
+    //     const updatedIngredients = {
+    //         ...this.state.ingredients
+    //     }
+    //     //assign the new count to the particular ingredient in our new const 
+    //     //alter the new copy
+    //     updatedIngredients[type] = updatedCount;
+    //     //store the price of the ingredient type i want to add into a new constant
+    //     const priceAddition = INGREDIENT_PRICES[type];
+    //     const oldPrice = this.state.totalPrice;
+    //     //add state initial price to price of ingredient i want to add
+    //     const newPrice = oldPrice + priceAddition;
+    //     //use SETSTATE to do the trick of updating the state respectively
+    //     this.setState({totalPrice:newPrice, ingredients:updatedIngredients});
+    //     this.updatePurchaseState(updatedIngredients);
+    // }
 
-    removeIngredientHandler =(type) => {
-        const oldCount= this.state.ingredients[type];
-        //if oldCount is 0 or less than calling this function should do nothing
-        if(oldCount <= 0){
-            return;
-        }
+    // removeIngredientHandler =(type) => {
+    //     const oldCount= this.state.ingredients[type];
+    //     //if oldCount is 0 or less than calling this function should do nothing
+    //     if(oldCount <= 0){
+    //         return;
+    //     }
 
-        //the logic is the same with add ingredients only that here its subtracted
-        const updatedCount = oldCount - 1;
-        const updatedIngredients = {
-            ...this.state.ingredients
-        };
-        updatedIngredients[type] = updatedCount;
-        const priceDeduction = INGREDIENT_PRICES[type];
-        const oldPrice = this.state.totalPrice;
-        const newPrice = oldPrice - priceDeduction;
-        this.setState({totalPrice:newPrice, ingredients:updatedIngredients});
-        this.updatePurchaseState(updatedIngredients);
-    }
+    //     //the logic is the same with add ingredients only that here its subtracted
+    //     const updatedCount = oldCount - 1;
+    //     const updatedIngredients = {
+    //         ...this.state.ingredients
+    //     };
+    //     updatedIngredients[type] = updatedCount;
+    //     const priceDeduction = INGREDIENT_PRICES[type];
+    //     const oldPrice = this.state.totalPrice;
+    //     const newPrice = oldPrice - priceDeduction;
+    //     this.setState({totalPrice:newPrice, ingredients:updatedIngredients});
+    //     this.updatePurchaseState(updatedIngredients);
+    // }
 
     //once this is triggered some css property for modal and backdrop would be changed
     purchaseHandler = () => {
@@ -157,10 +150,10 @@ class BurgerBuilder extends Component{
                             disabled={disabledInfo}
                             purchasable={this.state.purchasable}
                             ordered={this.purchaseHandler}
-                            price={this.state.totalPrice}/>
+                            price={this.props.price}/>
                     </Auxi>
             orderSummary = <OrderSummary 
-                            price={this.state.totalPrice}
+                            price={this.props.price}
                             ingredients={this.props.ings}
                             purchaseCanceled={this.purchaseCancelHandler}
                             purchaseContinued={this.purchaseContinueHandler}/>        
@@ -185,7 +178,8 @@ class BurgerBuilder extends Component{
 
 const mapStateToProps = state => {
     return{
-        ings:state.ingredients
+        ings:state.ingredients,
+        price:state.totalPrice
     }
 }
 

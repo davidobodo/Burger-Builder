@@ -7,7 +7,8 @@ const initialState = {
         cheese: 0,
         meat: 0
     },
-    totalPrice: 4
+    totalPrice: 4,
+    // pueshaseable: false, //i can still use this to updat my order button
 }
 
 const INGREDIENT_PRICES = {

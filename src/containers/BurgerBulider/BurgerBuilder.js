@@ -4,11 +4,12 @@ import Burger from '../../components/Burger/Burger'
 import BuildControls from '../../components/Burger/BuildControls/BuildControls'
 import Modal from '../../components/UI/Modal/Modal'
 import OrderSummary from '../../components/Burger/OrderSummary/OrderSummary'
-import axios from '../../axios(orders)'
 import Spinner from '../../components/UI/Spinner/Spinner'
 import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler'
 import {connect} from 'react-redux'
 import * as burgerBuilderActions from '../../store/actions/rootActions'
+import axios from '../../axios(orders)'
+
 
 
 //Prices for each ingredient
@@ -18,18 +19,10 @@ class BurgerBuilder extends Component{
     //the amount of each ingredient present in the burger
     state={
         //sole aim of purchaseable is to enable the ORDER NOW button
-        purchasing: false,
-        loading:false,
-        error:false
+        purchasing: false
     }
     componentDidMount(){
-        // axios.get('/ingredients.json')
-        //     .then( response =>{
-        //         this.setState({ingredients:response.data})
-        //     })
-        //     .catch(error => {
-        //         this.setState({error:true})
-        //     })
+       
     }
 
 
@@ -157,9 +150,7 @@ class BurgerBuilder extends Component{
                             purchaseCanceled={this.purchaseCancelHandler}
                             purchaseContinued={this.purchaseContinueHandler}/>        
         }
-        if(this.state.loading){
-            orderSummary = <Spinner/>
-        }
+        
 
         
 

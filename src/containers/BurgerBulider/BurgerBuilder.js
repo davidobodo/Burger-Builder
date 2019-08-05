@@ -11,18 +11,15 @@ import * as burgerBuilderActions from '../../store/actions/rootActions'
 import axios from '../../axios(orders)'
 
 
-
-//Prices for each ingredient
-
-
 class BurgerBuilder extends Component{
     //the amount of each ingredient present in the burger
     state={
         //sole aim of purchaseable is to enable the ORDER NOW button
         purchasing: false
     }
-    componentDidMount(){
-       
+
+    componentDidMount () {
+        this.props.onFetchIngredients();
     }
 
 
@@ -132,7 +129,7 @@ class BurgerBuilder extends Component{
 
         let orderSummary = null;
 
-        let burger = this.state.error ? <h1>Ingredients cant be loaded </h1> :<Spinner/>
+        let burger = this.props.error ? <h1>Ingredients cant be loaded </h1> :<Spinner/>
         if(this.props.ings){
             burger =  <Auxi>
                         <Burger ingredients={this.props.ings}/>
@@ -168,15 +165,17 @@ class BurgerBuilder extends Component{
 
 const mapStateToProps = state => {
     return{
-        ings:state.ingredients,
-        price:state.totalPrice
+        ings : state.ingredients,
+        price : state.totalPrice,
+        error : state.error
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return{
-        onIngredientAdded: (ingName) => dispatch(burgerBuilderActions.addIngredient(ingName)),
-        onIngredientRemoved: (ingName) => dispatch(burgerBuilderActions.removeIngredient(ingName))
+        onIngredientAdded : (ingName) => dispatch(burgerBuilderActions.addIngredient(ingName)),
+        onIngredientRemoved : (ingName) => dispatch(burgerBuilderActions.removeIngredient(ingName)),
+        onFetchIngredients : () => dispatch(burgerBuilderActions.fetchIngredients()) 
     }
 }
 

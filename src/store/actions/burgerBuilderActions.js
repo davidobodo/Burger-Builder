@@ -6,6 +6,7 @@ export const fetchIngredients = () => {
     return dispatch => {
         axios.get('/ingredients.json')
         .then( response =>{
+            console.log(response)
             dispatch(setIngredients(response.data))
         })
         .catch(error => {

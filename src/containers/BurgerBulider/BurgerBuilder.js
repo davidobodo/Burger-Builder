@@ -120,7 +120,7 @@ class BurgerBuilder extends Component{
         };
 
         for(let key in disabledInfo){
-        //this would either return true or false
+        //this would either retu3rn true or false
         //the key is the property value of the property name...i.e The number of each ingredient in my state
         //this gets run four times for each of the ingredients
         //if the key(i.e amount of that ingredient) fufills the below condition then it returns true

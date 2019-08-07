@@ -1,7 +1,12 @@
 import * as actionTypes from '../actions/actionTypes'
 
 const initialState = {
-    ingredients : null,
+    ingredients : {
+        salad:1,
+        cheese:1,
+        bacon:1,
+        meat:1
+    },
     totalPrice : 4,
     error : false
     // pueshaseable: false, //i can still use this to updat my order button

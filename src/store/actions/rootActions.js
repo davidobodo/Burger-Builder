@@ -5,4 +5,4 @@ export {
 } from './burgerBuilderActions';
 
 
-export { purchaseBurgerStart } from './orderActions'
+export { purchaseBurger } from './orderActions'

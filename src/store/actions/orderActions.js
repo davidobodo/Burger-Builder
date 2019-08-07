@@ -34,7 +34,6 @@ export const purchaseBurger = (orderData) => {
         //     .catch(error => {
         //         dispatch(purchaseBurgerFail(error))
         //     })    
-        console.log("shksdskj") 
         dispatch(purchaseBurgerSuccess( 123, orderData))       
     }
 }

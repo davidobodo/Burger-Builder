@@ -8,11 +8,6 @@ import * as actions from '../../store/actions/rootActions';
 
 class Checkout extends Component {
 
-    componentWillMount (){
-        this.props.onInitPurchase()
-    }
-
-
     checkoutCancelledHandler = () => {
         //goes to previos page
         this.props.history.goBack();
@@ -56,10 +51,6 @@ const mapStateToProps = state => {
     }
 }
 
-const mapDispatchToProps = dispatch => {
-    return{
-        onInitPurchase : () => dispatch(actions.purchaseInit())
-    }
-}
 
-export default connect(mapStateToProps, mapDispatchToProps)(Checkout)
+
+export default connect(mapStateToProps)(Checkout)

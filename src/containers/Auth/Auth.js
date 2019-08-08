@@ -121,12 +121,11 @@ class Auth extends Component {
     }
 }
 
-export default Auth
 
-// const mapDispatchToProps = dispatch => {
-//     return {
-//         onAuth: (email, password) => dispatch(actions.auth(email, password))
-//     };
-// };
+const mapDispatchToProps = dispatch => {
+    return {
+        onAuth: (email, password) => dispatch(actions.auth(email, password))
+    };
+};
 
-// export default connect(null, mapDispatchToProps)(Auth);
+export default connect(null, mapDispatchToProps)(Auth);

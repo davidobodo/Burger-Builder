@@ -7,10 +7,9 @@ import { connect } from 'react-redux'
 import Spinner from '../../components/UI/Spinner/Spinner'
 
 class Orders extends Component{
-    //Note that anything that is dynamic in a page has to be in a state, so that it can  change...hence the initialization of this state
 
     componentDidMount(){
-        this.props.onFetchOrders();
+        this.props.onFetchOrders(this.props.token);
     }
     
 
@@ -30,15 +29,17 @@ class Orders extends Component{
 }
 
 const mapStateToProps = state => {
+    console.log(state)
     return{
         orders: state.order.orders,
-        loading: state.order.loading
+        loading: state.order.loading,
+        token: state.auth.token
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return{
-        onFetchOrders : () => dispatch(actions.fetchOrders())
+        onFetchOrders : (token) => dispatch(actions.fetchOrders(token))
     }
 }
 

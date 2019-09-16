@@ -22,9 +22,10 @@ export const authStart = () => {
 }
 
 export const authSuccess = (token, userId) => {
+    console.log(token)
     return{
         type: actionTypes.AUTH_SUCCESS,
-        idtoken : token,
+        idToken : token,
         userId : userId
     }
 }
@@ -51,7 +52,6 @@ export const auth = (email, password, isSignUp) => {
         }
         axios.post( url , authData)
             .then( response => {
-                console.log(response)
                 dispatch(authSuccess(response.data.idToken, response.data.localId))
                 dispatch(checkAuthTimeout(response.data.expiresIn))
             })

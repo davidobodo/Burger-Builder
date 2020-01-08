@@ -25,7 +25,6 @@ export const authStart = () => {
 }
 
 export const authSuccess = (token, userId) => {
-    console.log(token)
     return{
         type: actionTypes.AUTH_SUCCESS,
         idToken : token,
@@ -86,5 +85,12 @@ export const authCheckState = () => {
                 dispatch(checkAuthTimeout((expirationDate.getTime() - new Date().getTime())/1000))
             }
         }
+    }
+}
+
+export const setAuthRedirectPath = (path) => {
+    return{
+        type: actionTypes.SET_AUTH_REDIRECT_PATH,
+        path: path
     }
 }
